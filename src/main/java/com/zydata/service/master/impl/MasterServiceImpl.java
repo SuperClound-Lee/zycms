@@ -24,10 +24,10 @@ public class MasterServiceImpl implements MasterService {
     public ManagerEntity masterLogin(String username,String password) throws MasterException{
         //TODO 获取当前登录账户信息
        ManagerEntity managerEntity=masterMapper.getMaster(username);
-        //TODO 用户输入密码加密
-        String m=validationCodeUtil.toMD5(password, managerEntity.getToken());
         //TODO 用户输入密码效验
         if(managerEntity !=null){
+            //TODO 用户输入密码加密
+            String m=validationCodeUtil.toMD5(password, managerEntity.getToken());
             if(m.equals(managerEntity.getPassword())){
                 return managerEntity;
             }else{

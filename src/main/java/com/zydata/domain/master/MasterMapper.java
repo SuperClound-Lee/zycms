@@ -49,5 +49,5 @@ public interface MasterMapper {
      * 新增账户
      * @param entity 账户信息
      */
-    void addMaster(ManagerEntity entity);
+    Integer addMaster(ManagerEntity entity);
 }

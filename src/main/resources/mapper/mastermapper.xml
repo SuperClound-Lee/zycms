@@ -75,9 +75,9 @@ DELETE FROM zy_manager WHERE  uid=#{uid};
      */
      void addMaster(ManagerEntity entity);
      -->
- <insert id="addMaster" >
-     INSERT INTO zy_manager (username,password,token,phone,email,actor,create_time,modify_time,)
-      VALUES #{username},#{password},#{token},#{phone},#{email},#{actor},#{create_time},#{modify_time});
+ <insert id="addMaster"  parameterType="com.zydata.entity.master.ManagerEntity" keyProperty="uid" useGeneratedKeys="true">
+     INSERT INTO zy_manager (username,password,token,phone,email,actor,create_time,modify_time)
+      VALUES (#{username},#{password},#{token},#{phone},#{email},#{actor},#{create_time},#{modify_time});
  </insert>
 
 </mapper>

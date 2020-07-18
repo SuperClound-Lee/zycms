@@ -1,6 +1,7 @@
 package com.zydata.controller.master;
 
 import com.zydata.config.MasterConfigMessage;
+import com.zydata.domain.master.MasterMapper;
 import com.zydata.entity.master.ManagerEntity;
 import com.zydata.exception.BaseException;
 import com.zydata.service.master.MasterService;
@@ -27,6 +28,10 @@ import java.util.Date;
 @Log
 public class MasterLoginController {
 
+
+    @Autowired
+    MasterMapper masterMapper;
+
     @Autowired
     private   MasterService masterService;
 
@@ -37,15 +42,15 @@ public class MasterLoginController {
     }
 
     @PostMapping("/zyadmin/login")
-    public String adminLogin(String username, String password, String validate,
-                             Model model, @SessionAttribute("RANDOMREDISKEY") Object object, HttpServletRequest req,
-                             HttpServletResponse repo){
+    public String adminLogin(String username,String password,String validate,
+                             Model model,HttpServletRequest req,HttpServletResponse repo){
         //记录登录IP与时间地址写入日志
         String Kip= req.getRemoteAddr();
         String formart= new SimpleDateFormat("yyyy-MM-DD hh:mm:ss").format(new Date());
         log.info("IP:"+Kip+"尝试登录-----"+"登录时间："+formart);
         //TODO 验证码效验
-        if(object.toString().equals(validate)){
+        Object obj =req.getSession().getAttribute("RANDOMREDISKEY");
+        if(obj.toString().equals(validate)){
             try{
                 //TODO 调用登录处理方法
                 ManagerEntity managerEntity=masterService.masterLogin(username,password);
@@ -56,17 +61,16 @@ public class MasterLoginController {
                 return "redirect:/zyadmin/master";
             }catch (BaseException e){
                 //TODO 登录失败响应信息
+                log.info(e.getMessage());
+                model.addAttribute("msg",e.getMessage());
             }
         }else{
+            log.info(MasterConfigMessage.VALIDATE_CODE);
             model.addAttribute("msg", MasterConfigMessage.VALIDATE_CODE);
         }
 
         //TODO 用户是否选择记住密码
-
-
-
-        log.info(username);
-        return "login";
+        return "admin/login";
 
     }
 
@@ -86,6 +90,22 @@ public class MasterLoginController {
 
     }
 
+    @RequestMapping("/xx")
+    public   void conteSxtLoads() {
+        ManagerEntity x=new ManagerEntity();
+        x.setUsername("44");
+        String h=validationCodeUtil.salt();
+
+        String f=validationCodeUtil.toMD5("44",h);
+        x.setPassword(f);
+        x.setToken(h);
+        x.setPhone("44444444");
+        x.setEmail("4444@qq.com");
+        x.setActor(644);
+        x.setCreate_time(new Date());
+        x.setModify_time(new Date());
+        masterMapper.addMaster(x);
+    }
 
 }
 
