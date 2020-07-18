@@ -19,7 +19,6 @@ public class MasterInterceptor implements HandlerInterceptor {
             response.sendRedirect("/zyadmin");
             return false;
         }else {
-
             return true;
         }
 
@@ -32,6 +31,7 @@ public class MasterInterceptor implements HandlerInterceptor {
 
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
+
 
     }
 }

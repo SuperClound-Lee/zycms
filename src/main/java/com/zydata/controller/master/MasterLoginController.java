@@ -6,6 +6,7 @@ import com.zydata.entity.master.ManagerEntity;
 import com.zydata.exception.BaseException;
 import com.zydata.service.master.MasterService;
 import com.zydata.utils.common.RemFlag;
+import com.zydata.utils.common.SystemUtils;
 import com.zydata.utils.common.validationCodeUtil;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,31 +46,32 @@ public class MasterLoginController {
     public String adminLogin(String username,String password,String validate,
                              Model model,HttpServletRequest req,HttpServletResponse repo){
         //记录登录IP与时间地址写入日志
-        String Kip= req.getRemoteAddr();
+        String Kip= SystemUtils.getIpAddr(req);
         String formart= new SimpleDateFormat("yyyy-MM-DD hh:mm:ss").format(new Date());
         log.info("IP:"+Kip+"尝试登录-----"+"登录时间："+formart);
-        //TODO 验证码效验
+        // 验证码效验
         Object obj =req.getSession().getAttribute("RANDOMREDISKEY");
-        if(obj.toString().equals(validate)){
+        if(obj!=null&&obj.toString().equals(validate)){
             try{
-                //TODO 调用登录处理方法
+                // 调用登录处理方法
                 ManagerEntity managerEntity=masterService.masterLogin(username,password);
-                //TODO 设置登录Session信息
+                // 设置登录Session信息
                 req.getSession().setAttribute("uid",managerEntity.getUid());
                 req.getSession().setAttribute("masterInformation",managerEntity.getUsername());
+                // 用户是否选择记住密码
                 RemFlag.getFlag(repo,req);
                 return "redirect:/zyadmin/master";
             }catch (BaseException e){
-                //TODO 登录失败响应信息
-                log.info(e.getMessage());
+                // 登录失败响应信息
+
                 model.addAttribute("msg",e.getMessage());
             }
         }else{
-            log.info(MasterConfigMessage.VALIDATE_CODE);
+
             model.addAttribute("msg", MasterConfigMessage.VALIDATE_CODE);
         }
 
-        //TODO 用户是否选择记住密码
+
         return "admin/login";
 
     }

@@ -13,7 +13,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class MasterHandler implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new MasterInterceptor()).addPathPatterns("/manager/**")
+        registry.addInterceptor(new MasterInterceptor()).addPathPatterns("/zyadmin/master/**")
                 .excludePathPatterns("/zyadmin/login")
                 .excludePathPatterns("/master/**")
                 .excludePathPatterns("/css/**")

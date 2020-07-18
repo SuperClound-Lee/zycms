@@ -107,3 +107,7 @@ body{
 	width: 250px;
 	border-radius: 5px;
 }
+.msg{
+	color: #FF6666;
+	padding-top: 3px;
+}

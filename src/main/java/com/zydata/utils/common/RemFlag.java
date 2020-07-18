@@ -18,12 +18,14 @@ public class RemFlag {
             String password= request.getParameter("password");
 
         if("on".equals(request.getParameter("remeber"))){
-            String loginInfo=username+"-"+password;
-            Cookie cookie=new Cookie("loginInfo",loginInfo);
-            response.addCookie(cookie);
+            Cookie cookie=new Cookie("username",username);
+            Cookie cookie2= new Cookie("password",password);
             cookie.setMaxAge(30*24*60*60);
+            cookie2.setMaxAge(30*24*60*60);
             cookie.setPath("/");
+            cookie2.setPath("/");
             response.addCookie(cookie);
+            response.addCookie(cookie2);
 
         }
 
