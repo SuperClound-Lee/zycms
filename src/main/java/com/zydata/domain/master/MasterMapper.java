@@ -3,13 +3,14 @@ package com.zydata.domain.master;
 import com.zydata.entity.master.ManagerEntity;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
+
 @Repository
-@Mapper
 public interface MasterMapper {
-    /**
+       /**
      * 根据账号查询单个管理账户
      * @param username 账户
      * @return 账户信息
@@ -21,13 +22,13 @@ public interface MasterMapper {
      * @param uid 账号ID
      * @return 账户信息
      */
-    ManagerEntity getMaster(Integer uid);
+    ManagerEntity getMasterUseID(Integer uid);
 
     /**
      * 查询所有管理账户
      * @return 所有账户信息
      */
-    List<ManagerEntity> getMaster();
+    List<ManagerEntity> getMasterBase();
 
     /**
      * 修改账号信息

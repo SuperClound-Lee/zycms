@@ -15,5 +15,6 @@ public class MasterConfigMessage {
     public static final String VALIDATE_PHONE="手机格式不正确";
     public static final String MASTER_ADD_SUCCESS="添加%s失败！用户已存在";
     public static final String MASTER_ADD_ERROR="添加%s用户成功";
+    public static final String VALIDATE_CODE="验证码错误！";
 
 }

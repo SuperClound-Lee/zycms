@@ -1,5 +1,8 @@
 package com.zydata.utils.common;
 
+import org.apache.commons.codec.digest.DigestUtils;
+import org.thymeleaf.util.StringUtils;
+
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -7,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.Random;
+import java.util.UUID;
 
 /**
  * 图片验证生成工具
@@ -109,6 +113,21 @@ public class validationCodeUtil {
         return String.valueOf(randString.charAt(num));
     }
 
+
+
+    //根据UUID获取掩码
+    public  static  String salt(){
+
+        return StringUtils.replace(UUID.randomUUID().toString(),"-","");
+    }
+
+
+    /**
+     * MD5加密
+     */
+    public static String toMD5(String password ,String salt) {
+        return DigestUtils.md2Hex(password+salt);
+    }
 }
 
 

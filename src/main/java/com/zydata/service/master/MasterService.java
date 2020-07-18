@@ -1,6 +1,7 @@
 package com.zydata.service.master;
 
 import com.zydata.entity.master.ManagerEntity;
+import com.zydata.exception.master.MasterException;
 
 import java.util.List;
 
@@ -11,7 +12,7 @@ public interface MasterService {
      * @param username 账户
      * @return 账户信息
      */
-    ManagerEntity masterLogin(String username,String password);
+    ManagerEntity masterLogin(String username,String password) throws MasterException;
 
     /**
      * 根据ID查询单个管理账户

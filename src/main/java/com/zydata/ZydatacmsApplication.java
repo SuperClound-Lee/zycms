@@ -5,7 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@MapperScan("{com.zydata.domain}")
+@MapperScan({"com.zydata.domain","com.zydata.domain.master"})
 public class ZydatacmsApplication {
 
     public static void main(String[] args) {

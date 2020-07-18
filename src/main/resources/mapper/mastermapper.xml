@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zydata.domain.master.MasterMapper">
+ <!-- /**
+  * 根据账号查询单个管理账户
+  * @param username 账户
+  * @return 账户信息
+          private Integer uid;
+         private String username;
+         private String password;
+         private String token;
+         private String phone;
+         private String email;
+         private Integer actor;
+         private String charnam; //等级名称
+         private Date create_time;
+         private Date modify_time;
+  */
+  ManagerEntity getMaster(String username);-->
+
+ <select id="getMaster" resultType="com.zydata.entity.master.ManagerEntity">
+ SELECT *FROM zy_manager WHERE username=#{usernma};
+ </select>
+
+
+ <!-- /**
+  * 根据ID查询单个管理账户
+  * @param uid 账号ID
+  * @return 账户信息
+  */
+  ManagerEntity getMaster(Integer uid);-->
+ <select id="getMasterUseID" resultType="com.zydata.entity.master.ManagerEntity">
+ SELECT *FROM zy_manager WHERE uid=#{uid};
+ </select>
+
+
+ <!-- /**
+  * 查询所有管理账户
+  * @return 所有账户信息
+  */
+  List<ManagerEntity> getMaster();-->
+
+ <select id="getMasterBase" resultType="com.zydata.entity.master.ManagerEntity">
+  SELECT *FROM zy_manager ;
+</select>
+
+
+ <!-- /**
+  * 修改账号信息
+  * @param uid 账户ID
+  * @param entity 修改账号信息
+  * @return 执行结果
+  */
+  Integer modifyActor(Integer uid,ManagerEntity entity);-->
+ <update id="modifyActor">
+UPDATE zy_manager SET phone =#{phone},email=#{email},modify_date=#{modify_date} WHERE uid = #{uid}
+</update>
+
+ <!-- /**
+  * 删除账户
+  * @param uid 账户ID
+  * @return 执行结果
+  */
+  Integer deleteMaster(Integer uid);-->
+ <delete id="deleteMaster">
+DELETE FROM zy_manager WHERE  uid=#{uid};
+ </delete>
+
+
+ <!--    /**
+     * 新增账户
+     * @param entity 账户信息
+     */
+     void addMaster(ManagerEntity entity);
+     -->
+ <insert id="addMaster" >
+     INSERT INTO zy_manager (username,password,token,phone,email,actor,create_time,modify_time,)
+      VALUES #{username},#{password},#{token},#{phone},#{email},#{actor},#{create_time},#{modify_time});
+ </insert>
+
+</mapper>
