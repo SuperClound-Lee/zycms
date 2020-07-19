@@ -111,3 +111,22 @@ body{
 	color: #FF6666;
 	padding-top: 3px;
 }
+@media screen and (min-width: 320px) and (max-width: 1156px){
+
+	body{
+		background: #006699;
+	}
+	.bg{
+		background-color: rgba(0,0,0,0.1);
+		margin: 20px;
+	}
+	.login-form{
+		margin: 0 auto;
+		width: auto;
+		border-radius: 5px;
+	}
+	#main{
+		background: none;
+		transform: translateY(20%);
+	}
+}
