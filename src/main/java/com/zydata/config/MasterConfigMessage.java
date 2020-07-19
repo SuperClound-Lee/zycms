@@ -16,5 +16,8 @@ public class MasterConfigMessage {
     public static final String MASTER_ADD_SUCCESS="添加%s失败！用户已存在";
     public static final String MASTER_ADD_ERROR="添加%s用户成功";
     public static final String VALIDATE_CODE="验证码错误！";
+    public static final String FAIL_TO_DEDELET="删除失败";
+    public static final String UPDATE_MASTER="修改成功";
+    public static final String FAIL_TO_GET="获取数据失败";
 
 }

@@ -46,6 +46,6 @@ public interface MasterService {
      * 注册
      * @param entity 账户信息
      */
-    void masterRegister(ManagerEntity entity);
+    void masterRegister(ManagerEntity entity)throws MasterException;
 
 }

@@ -63,15 +63,11 @@ public class MasterLoginController {
                 return "redirect:/zyadmin/master";
             }catch (BaseException e){
                 // 登录失败响应信息
-
                 model.addAttribute("msg",e.getMessage());
             }
         }else{
-
             model.addAttribute("msg", MasterConfigMessage.VALIDATE_CODE);
         }
-
-
         return "admin/login";
 
     }
@@ -92,23 +88,13 @@ public class MasterLoginController {
 
     }
 
-    @RequestMapping("/xx")
-    public   void conteSxtLoads() {
-        ManagerEntity x=new ManagerEntity();
-        x.setUsername("44");
-        String h=validationCodeUtil.salt();
-
-        String f=validationCodeUtil.toMD5("44",h);
-        x.setPassword(f);
-        x.setToken(h);
-        x.setPhone("44444444");
-        x.setEmail("4444@qq.com");
-        x.setActor(644);
-        x.setCreate_time(new Date());
-        x.setModify_time(new Date());
-        masterMapper.addMaster(x);
-    }
-
+/**
+ * 1.添加
+ * 2.修改
+ * 3.删除
+ * 4.获取所有管理员信息
+ * 5.统计管理员数量
+ */
 }
 
 
